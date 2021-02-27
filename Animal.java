@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Random;
+import java.util.Iterator;
 
 /**
  * A class representing shared characteristics of animals.
@@ -20,7 +21,9 @@ public abstract class Animal
 
     private boolean infected;
 
-    private static final double INFECTION_PROBA = 0.05;
+    private static final double INFECTION_PROBABILITY = 0.2;
+    
+    private static final double FATALITY_PROBABILITY = 0.01;
 
     // A shared random number generator to control breeding.
     protected static final Random rand = Randomizer.getRandom();
@@ -37,8 +40,9 @@ public abstract class Animal
         this.field = field;
         setLocation(location);
         male = rand.nextBoolean();
-        infected= false;
+        infected = false;
         
+        if (rand.nextDouble() <= INFECTION_PROBABILITY) {infected = true;}
     }
 
     /**
@@ -59,7 +63,7 @@ public abstract class Animal
 
     public boolean isMale(){return male;}
 
-    public boolean isInfected (){return infected;}
+    public boolean isInfected(){return infected;}
 
     /**
      * Indicate that the animal is no longer alive.
@@ -105,14 +109,30 @@ public abstract class Animal
     {
         return field;
     }
-
-    protected boolean sickAnimal(){
-        if (rand.nextDouble()<=INFECTION_PROBA){
-            infected = !infected;
+    
+    protected void spreadInfection()
+    {
+        if (infected && alive) {
+            Field field = getField();
+            List<Location> adjacent = field.adjacentLocations(location);
+            Iterator<Location> it = adjacent.iterator();
+            while(it.hasNext()) {
+                Location where = it.next();
+                Object entity = field.getObjectAt(where);
+                if(entity instanceof Animal) {
+                    Animal animal = (Animal) entity;
+                        if(animal.isAlive() && rand.nextDouble() <= INFECTION_PROBABILITY) { 
+                            animal.infect();
+                        }
+                }
+            }
+            if (rand.nextDouble() <= FATALITY_PROBABILITY) {setDead();}
         }
-        return infected;
     }
-
+    
+    
+    protected void infect() {infected = true;}
+    
     protected abstract int getFoodValue();
     
 }

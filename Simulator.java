@@ -127,6 +127,7 @@ public class Simulator
             Animal animal = it.next();
             if(timebox.isDay(step)){
                 animal.act(newAnimals);
+                animal.spreadInfection();
             }
             if(! animal.isAlive()) {
                 it.remove();
@@ -147,7 +148,7 @@ public class Simulator
             }
         }
         
-
+        
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
         
@@ -179,32 +180,33 @@ public class Simulator
         field.clear();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
+                Location location = new Location(row, col);
                 if(rand.nextDouble() <= LION_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
+                    
                     Lion lion = new Lion(true, field, location);
                     animals.add(lion);
                 }
                 else if(rand.nextDouble() <= PANGOLIN_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
+                    
                     Pangolin pangolin = new Pangolin(true, field, location);
                     animals.add(pangolin);
                 } else if (rand.nextDouble() <= MONKEY_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
+                    
                     Monkey monkey = new Monkey(true, field, location);
                     animals.add(monkey);
                     // else leave the location empty.
                 }else if(rand.nextDouble() <= ANT_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
+                    
                     Ant ant = new Ant(true, field, location);
                     animals.add(ant);  
                 } else if (rand.nextDouble() <= JAGUAR_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
+                    
                     Jaguar jaguar = new Jaguar(true, field, location);
                     animals.add(jaguar);
                 } else if (rand.nextDouble() <= PLANT_CREATION_PROBABILITY){
-                        Location location = new Location(row,col);
-                        Plant plant = new Plant (true, field, location);
-                        plants.add(plant);
+                    
+                    Plant plant = new Plant (true, field, location);
+                    plants.add(plant);
                 }
             }
         }

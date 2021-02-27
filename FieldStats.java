@@ -13,6 +13,8 @@ public class FieldStats
 {
     // Counters for each type of entity (fox, rabbit, etc.) in the simulation.
     private HashMap<Class, Counter> counters;
+    
+    private int infectedCounter = 0;
     // Whether the counters are currently up to date.
     private boolean countsValid;
 
@@ -44,6 +46,7 @@ public class FieldStats
             buffer.append(info.getCount());
             buffer.append(' ');
         }
+        
         return buffer.toString();
     }
     
@@ -58,6 +61,7 @@ public class FieldStats
             Counter count = counters.get(key);
             count.reset();
         }
+        infectedCounter=0;
     }
 
     /**
@@ -117,12 +121,19 @@ public class FieldStats
         reset();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                Object animal = field.getObjectAt(row, col);
-                if(animal != null) {
-                    incrementCount(animal.getClass());
+                Object entity = field.getObjectAt(row, col);
+                if(entity != null) {
+                    incrementCount(entity.getClass());
                 }
             }
         }
         countsValid = true;
     }
+    
+    public int getInfectedCounter()
+    {
+        return infectedCounter;
+    }
+    
+    public void incrementInfectedCounter(){infectedCounter++;}
 }

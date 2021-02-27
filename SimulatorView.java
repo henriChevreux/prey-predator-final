@@ -123,10 +123,14 @@ public class SimulatorView extends JFrame
         fieldView.preparePaint();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                Object animal = field.getObjectAt(row, col);
-                if(animal != null) {
-                    stats.incrementCount(animal.getClass());
-                    fieldView.drawMark(col, row, getColor(animal.getClass()));
+                Object entity = field.getObjectAt(row, col);
+                if(entity != null) {
+                    if (entity instanceof Animal) {
+                        Animal animal = (Animal) entity;
+                        if (animal.isInfected()){stats.incrementInfectedCounter();}
+                    }
+                    stats.incrementCount(entity.getClass());
+                    fieldView.drawMark(col, row, getColor(entity.getClass()));
                 }
                 else {
                     fieldView.drawMark(col, row, EMPTY_COLOR);
@@ -136,6 +140,7 @@ public class SimulatorView extends JFrame
         stats.countFinished();
 
         population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        diseaseLabel.setText(INFECTION_PREFIX + stats.getInfectedCounter());
         fieldView.repaint();
     }
 
