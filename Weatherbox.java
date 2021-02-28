@@ -76,34 +76,27 @@ public class Weatherbox
                 throw new IllegalArgumentException("Error: invalid weather type input");
         }
     }
-    /**
+
+     /**
      * Defines the behavior of a rainy weather
      */
     private void rainAction(){
-    
-<<<<<<< HEAD
+    Plant.divideGrowthRate();
+    Prey.resetFoodValue();
     }
-    /**
+     /**
      * Defines the behavior of a foggy weather.
      */
     private void fogAction(){
-=======
-    private void rainAction(){};
-    private void fogAction(){
         Prey.setFoodValue(2);
-    
+        Plant.resetGrowthRate();
     }
-    private void sunAction(){
-        Prey.resetFoodValue();
-    };
->>>>>>> 377635aaaa59a06da345df429d2c232ccc98a692
-    
-    }
-    /**
+     /**
      * Defines the behavior of a sunny weather.
      */
     private void sunAction(){
-    
+        Prey.resetFoodValue();
+        Plant.resetGrowthRate();
     }
     /** 
      * Gets the current weather.

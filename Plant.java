@@ -12,7 +12,7 @@ public class Plant
 
     private Location location;
 
-    private static final double PLANT_GROWTH_RATE = 0.07;
+    protected static final double DEFAULT_GROWTH_RATE = 0.07;
 
     //max size of a plant in centimeters.
     private static final int MAX_SIZE = 10;
@@ -22,6 +22,8 @@ public class Plant
     private int size;    
 
     private boolean alive;
+    
+    protected static double plantGrowthRate;
 
     /**
      * Constructor for objects of class Plant
@@ -33,7 +35,7 @@ public class Plant
         alive = true;
 
         size = rand.nextInt(MAX_SIZE);
-
+        plantGrowthRate = DEFAULT_GROWTH_RATE;
     }
 
     public void act (List<Plant> newPlants){
@@ -47,7 +49,7 @@ public class Plant
      */
 
     private void growPlant(){
-        if(size<=MAX_SIZE && rand.nextDouble() <= PLANT_GROWTH_RATE)
+        if(size<=MAX_SIZE && rand.nextDouble() <= plantGrowthRate)
         {
             size++;
         }  
@@ -81,6 +83,15 @@ public class Plant
 
     protected int getSize(){
         return size;
+    }
+    protected double getPlantGrowthRate(){
+        return plantGrowthRate;
+    }
+    public static void divideGrowthRate(){
+        plantGrowthRate = plantGrowthRate/2;
+    }
+    public static void resetGrowthRate(){
+        plantGrowthRate = DEFAULT_GROWTH_RATE;
     }
     
     

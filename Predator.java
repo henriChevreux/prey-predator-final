@@ -20,7 +20,7 @@ public  abstract class Predator extends Animal
     // number of steps a jaguar can go before it has to eat again.
     // A shared random number generator to control breeding.
     protected static final Random rand = Randomizer.getRandom();
-    
+        
     protected static final int FOOD_VALUE = 16;
     
     protected static final int MAX_FOOD_VALUE = 20;

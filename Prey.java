@@ -17,36 +17,31 @@ public abstract class Prey extends Animal
     protected static final int BREEDING_AGE = 5;
     // The age to which a prey can live.
     protected static final int MAX_AGE = 40;
-<<<<<<< HEAD
-    // The food value given to a predator when he 
-    //eats a single prey.
-    protected static final int FOOD_VALUE = 5;
+   
     //The maximum food level that a prey can have
     //by eating plants.
-=======
-    
-    // The food value of a single rabbit. In effect, this is the
-    // number of steps a lion can go before it has to eat again.
+    protected static final int MAX_FOOD_VALUE = 8;
+
+     // The default food value given to a predator when he 
+    //eats a single prey.
     protected static final int DEFAULT_FOOD_VALUE = 5;
     
->>>>>>> 377635aaaa59a06da345df429d2c232ccc98a692
-    protected static final int MAX_FOOD_VALUE = 8;
     // A shared random number generator to control breeding.
     protected static final Random rand = Randomizer.getRandom();
     // The prey's age.
     protected int age;
     // The prey's food level, which is increased by eating plants.
     protected int foodLevel;
+     // The food value given to a predator when he 
+    //eats a single prey.
+    protected static int foodValue;
     
-<<<<<<< HEAD
-    /**
+    //protected static int foodValue;
+    
+      /**
      * Constructor for objects of class Prey.
      * Each prey has 
      */
-=======
-    protected static int foodValue;
-    
->>>>>>> 377635aaaa59a06da345df429d2c232ccc98a692
     public Prey(boolean randomAge, Field field, Location location)
     {
         super(field, location);
