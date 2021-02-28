@@ -10,7 +10,7 @@ public class Monkey extends Prey
 {
     
     // The likelihood of an ant breeding.
-    private static final double BREEDING_PROBABILITY = 0.12;
+    private static final double BREEDING_PROBABILITY = 0.15;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
 

@@ -13,7 +13,7 @@ public class Lion extends Predator
     // Characteristics shared by all lions (class variables).
     
     // The likelihood of a lion breeding.
-    private static final double BREEDING_PROBABILITY = 0.02;
+    private static final double BREEDING_PROBABILITY = 0.12;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     

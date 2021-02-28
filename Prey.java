@@ -11,9 +11,9 @@ import java.util.Iterator;
 public abstract class Prey extends Animal
 {
     // The age at which a lion can start to breed.
-    protected static final int BREEDING_AGE = 2;
+    protected static final int BREEDING_AGE = 5;
     // The age to which a lion can live.
-    protected static final int MAX_AGE = 30;
+    protected static final int MAX_AGE = 40;
     
     // The food value of a single rabbit. In effect, this is the
     // number of steps a lion can go before it has to eat again.

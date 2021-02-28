@@ -15,9 +15,9 @@ public class Ant extends Prey
 
 
     // The likelihood of an ant breeding.
-    private static final double BREEDING_PROBABILITY = 0.2;
+    private static final double BREEDING_PROBABILITY = 0.12;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 6;
+    private static final int MAX_LITTER_SIZE = 3;
 
     /**
      * Create a new ant. An ant may be created with age
