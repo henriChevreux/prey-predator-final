@@ -12,9 +12,9 @@ public class Weatherbox
 {    
     private static final int WEATHER_CHANGE_FREQUENCY = 20;
     
-    private static final double RAIN_PROBABILITY = 0.1;
+    private static final double RAIN_PROBABILITY = 0.2;
     
-    private static final double FOG_PROBABILITY = 0.2;
+    private static final double FOG_PROBABILITY = 0.7;
     
     private String weather;
     
@@ -81,11 +81,22 @@ public class Weatherbox
      */
     private void rainAction(){
     
+<<<<<<< HEAD
     }
     /**
      * Defines the behavior of a foggy weather.
      */
     private void fogAction(){
+=======
+    private void rainAction(){};
+    private void fogAction(){
+        Prey.setFoodValue(2);
+    
+    }
+    private void sunAction(){
+        Prey.resetFoodValue();
+    };
+>>>>>>> 377635aaaa59a06da345df429d2c232ccc98a692
     
     }
     /**

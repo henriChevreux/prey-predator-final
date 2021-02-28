@@ -17,11 +17,19 @@ public abstract class Prey extends Animal
     protected static final int BREEDING_AGE = 5;
     // The age to which a prey can live.
     protected static final int MAX_AGE = 40;
+<<<<<<< HEAD
     // The food value given to a predator when he 
     //eats a single prey.
     protected static final int FOOD_VALUE = 5;
     //The maximum food level that a prey can have
     //by eating plants.
+=======
+    
+    // The food value of a single rabbit. In effect, this is the
+    // number of steps a lion can go before it has to eat again.
+    protected static final int DEFAULT_FOOD_VALUE = 5;
+    
+>>>>>>> 377635aaaa59a06da345df429d2c232ccc98a692
     protected static final int MAX_FOOD_VALUE = 8;
     // A shared random number generator to control breeding.
     protected static final Random rand = Randomizer.getRandom();
@@ -30,21 +38,28 @@ public abstract class Prey extends Animal
     // The prey's food level, which is increased by eating plants.
     protected int foodLevel;
     
+<<<<<<< HEAD
     /**
      * Constructor for objects of class Prey.
      * Each prey has 
      */
+=======
+    protected static int foodValue;
+    
+>>>>>>> 377635aaaa59a06da345df429d2c232ccc98a692
     public Prey(boolean randomAge, Field field, Location location)
     {
         super(field, location);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(MAX_FOOD_VALUE);
+            
         }
         else {
             age = 0;
             foodLevel = MAX_FOOD_VALUE;
         }
+        foodValue = DEFAULT_FOOD_VALUE;
     }
     
     
@@ -67,7 +82,9 @@ public abstract class Prey extends Animal
         return null;
     }
 
-    protected int getFoodValue(){return FOOD_VALUE;}
+    protected static int getFoodValue(){return foodValue;}
+    
+    protected static void resetFoodValue(){foodValue = DEFAULT_FOOD_VALUE;}
     
     protected void feed(Plant plant)
     {
@@ -115,5 +132,6 @@ public abstract class Prey extends Animal
      * @param newRabbits A list to return newly born rabbits.
      */
     public abstract void giveBirth(List<Animal> newPreys);
-
+    
+    public static void setFoodValue(int newFoodValue){foodValue = newFoodValue;}
 }
