@@ -21,15 +21,18 @@ public class Timebox
         
     }
 
-    public int getDay(int step){
+    public int getDay(){
+        int step = Simulator.getStep();
         return step/24;
     }
     
-    public int getHourOfDay(int step){
+    public int getHourOfDay(){
+        int step = Simulator.getStep();
         return (step+11)%12+1;
     }
     
-    public boolean isDay(int step) {
+    public boolean isDay() {
+        int step = Simulator.getStep();
         if (step%24>=6 && step%24<=18) return true;
         else return false;
     }
@@ -40,11 +43,13 @@ public class Timebox
         else return false;      
     }
 
-    public String getDayNightString(int step) {
-        if (isDay(step)) return DAY_DISPLAY_VALUE;
+    public String getDayNightString() {
+        int step = Simulator.getStep();
+        if (isDay()) return DAY_DISPLAY_VALUE;
         else return NIGHT_DISPLAY_VALUE;
     }
-    public String getAMAndPMString(int step){
+    public String getAMAndPMString(){
+        int step = Simulator.getStep();
         if (isAM(step))return AM_DISPLAY_VALUE;
         else return PM_DISPLAY_VALUE;
     }

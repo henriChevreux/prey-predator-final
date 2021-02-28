@@ -39,11 +39,12 @@ public class Simulator
     //list of sick animals in the field    
     private Field field;
     // The current step of the simulation.
-    private int step;
+    private static int step;
     // A graphical view of the simulation.
     private SimulatorView view;
     // A timebox object to manipulate time-related information
     private Timebox timebox;
+    private Weatherbox weatherbox;
     /**
      * Construct a simulation field with default size.
      */
@@ -81,6 +82,8 @@ public class Simulator
         view.setColor(Plant.class, Color.GREEN);
         //Create a timebox object
         timebox = new Timebox();
+        weatherbox = new Weatherbox();
+        weatherbox.setWeather("sun");
 
         // Setup a valid starting point.
         reset();
@@ -119,13 +122,13 @@ public class Simulator
     public void simulateOneStep()
     {
         step++;
-
+        weatherbox.generateWeather();
         // Provide space for newborn animals.
         List<Animal> newAnimals = new ArrayList<>();        
         // Let all rabbits act.
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
-            if(timebox.isDay(step)){
+            if(timebox.isDay()){
                 animal.act(newAnimals);
                 animal.spreadInfection();
             }
@@ -136,7 +139,7 @@ public class Simulator
         
         Random rand = Randomizer.getRandom();
         
-        if (timebox.isDay(step)){
+        if (timebox.isDay()){
             for(int row = 0; row < field.getDepth(); row++) {
                 for(int col = 0; col < field.getWidth(); col++) {
                     Object element = field.getObjectAt(row, col);
@@ -153,8 +156,8 @@ public class Simulator
         animals.addAll(newAnimals);
         
 
-        view.showStatus(timebox.getDay(step), timebox.getHourOfDay(step), 
-            timebox.getDayNightString(step),timebox.getAMAndPMString(step), field);
+        view.showStatus(timebox.getDay(), timebox.getHourOfDay(), 
+            timebox.getDayNightString(),timebox.getAMAndPMString(), field);
     }
 
     /**
@@ -167,8 +170,8 @@ public class Simulator
         populate();
 
         // Show the starting state in the view.
-        view.showStatus(timebox.getDay(step), timebox.getHourOfDay(step), 
-            timebox.getDayNightString(step),timebox.getAMAndPMString(step), field);
+        view.showStatus(timebox.getDay(), timebox.getHourOfDay(), 
+            timebox.getDayNightString(),timebox.getAMAndPMString(), field);
     }
 
     /**
@@ -224,6 +227,11 @@ public class Simulator
         catch (InterruptedException ie) {
             // wake up
         }
+    }
+    
+    public static int getStep()
+    {
+        return step;
     }
 }
 
