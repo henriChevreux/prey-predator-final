@@ -17,7 +17,7 @@ public abstract class Prey extends Animal
     
     // The food value of a single rabbit. In effect, this is the
     // number of steps a lion can go before it has to eat again.
-    protected static final int FOOD_VALUE = 5;
+    protected static final int DEFAULT_FOOD_VALUE = 5;
     
     protected static final int MAX_FOOD_VALUE = 8;
     // A shared random number generator to control breeding.
@@ -27,17 +27,21 @@ public abstract class Prey extends Animal
     // The lion's food level, which is increased by eating pangolins.
     protected int foodLevel;
     
+    protected static int foodValue;
+    
     public Prey(boolean randomAge, Field field, Location location)
     {
         super(field, location);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(MAX_FOOD_VALUE);
+            
         }
         else {
             age = 0;
             foodLevel = MAX_FOOD_VALUE;
         }
+        foodValue = DEFAULT_FOOD_VALUE;
     }
     
     
@@ -60,7 +64,9 @@ public abstract class Prey extends Animal
         return null;
     }
 
-    protected int getFoodValue(){return FOOD_VALUE;}
+    protected static int getFoodValue(){return foodValue;}
+    
+    protected static void resetFoodValue(){foodValue = DEFAULT_FOOD_VALUE;}
     
     protected void feed(Plant plant)
     {
@@ -108,5 +114,6 @@ public abstract class Prey extends Animal
      * @param newRabbits A list to return newly born rabbits.
      */
     public abstract void giveBirth(List<Animal> newPreys);
-
+    
+    public static void setFoodValue(int newFoodValue){foodValue = newFoodValue;}
 }

@@ -133,6 +133,6 @@ public abstract class Animal
     
     protected void infect() {infected = true;}
     
-    protected abstract int getFoodValue();
+    //protected abstract int getFoodValue();
     
 }
