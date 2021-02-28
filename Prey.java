@@ -2,31 +2,38 @@ import java.util.List;
 import java.util.Random;
 import java.util.Iterator;
 /**
- * Write a description of class Prey here.
+ * This class implements the behavior of all the preys 
+ * in the simulator. It was assumed that all preys
+ * have the same maximum age, breeding age, food value
+ * and maximum food value.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Stanislas Jacquet and Henri Chevreux 
+ * @version 2021.02.28
  */
 
 public abstract class Prey extends Animal
 {
-    // The age at which a lion can start to breed.
+    // The age at which a prey can start to breed.
     protected static final int BREEDING_AGE = 5;
-    // The age to which a lion can live.
+    // The age to which a prey can live.
     protected static final int MAX_AGE = 40;
-    
-    // The food value of a single rabbit. In effect, this is the
-    // number of steps a lion can go before it has to eat again.
+    // The food value given to a predator when he 
+    //eats a single prey.
     protected static final int FOOD_VALUE = 5;
-    
+    //The maximum food level that a prey can have
+    //by eating plants.
     protected static final int MAX_FOOD_VALUE = 8;
     // A shared random number generator to control breeding.
     protected static final Random rand = Randomizer.getRandom();
-        // The lion's age.
+    // The prey's age.
     protected int age;
-    // The lion's food level, which is increased by eating pangolins.
+    // The prey's food level, which is increased by eating plants.
     protected int foodLevel;
     
+    /**
+     * Constructor for objects of class Prey.
+     * Each prey has 
+     */
     public Prey(boolean randomAge, Field field, Location location)
     {
         super(field, location);

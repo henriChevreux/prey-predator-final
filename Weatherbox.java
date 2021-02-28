@@ -1,14 +1,15 @@
 import java.util.Random;
 /**
- * Write a description of class WeatherBox here.
+ * This class corresponds to the implementation of 
+ * the weather logic for the simulator. 
+ * The weather can be foggy rainy or sunny and changes randomly
+ * every 20 steps.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Stanislas Jacquet and Henri Chevreux
+ * @version 2021.02.28
  */
 public class Weatherbox
-{
-    // instance variables - replace the example below with your own
-    
+{    
     private static final int WEATHER_CHANGE_FREQUENCY = 20;
     
     private static final double RAIN_PROBABILITY = 0.1;
@@ -24,9 +25,12 @@ public class Weatherbox
      */
     public Weatherbox()
     {
-        // initialise instance variables
         
     }
+    /**
+     * Changes the status of the weather randomly
+     * every X number of steps.
+     */
 
     public void generateWeather()
     {
@@ -43,7 +47,13 @@ public class Weatherbox
             }
         }
     }
-    
+    /**
+     * Sets the weather to one of the three weather status.
+     * Each weather status correspond to one case in the switch
+     * statement and has a particular behavior.
+     * Throws an Exception if the weather input type does not
+     * correspond to one of the three accepted inputs.
+     */
     public void setWeather(String weatherString) throws IllegalArgumentException
     {
         switch(weatherString) {  
@@ -66,11 +76,29 @@ public class Weatherbox
                 throw new IllegalArgumentException("Error: invalid weather type input");
         }
     }
+    /**
+     * Defines the behavior of a rainy weather
+     */
+    private void rainAction(){
     
-    private void rainAction(){};
-    private void fogAction(){};
-    private void sunAction(){};
+    }
+    /**
+     * Defines the behavior of a foggy weather.
+     */
+    private void fogAction(){
     
+    }
+    /**
+     * Defines the behavior of a sunny weather.
+     */
+    private void sunAction(){
+    
+    }
+    /** 
+     * Gets the current weather.
+     * @return a string correponding to 
+     * the current weather status.
+     */
     public String getWeather(){
         return weather;
     }

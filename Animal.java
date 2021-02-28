@@ -6,7 +6,8 @@ import java.util.Iterator;
  * A class representing shared characteristics of animals.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (2)
+ * @edited by Stanislas Jacquet and Henri Chevreux
+ * @version 2021.02.28 (2)
  */
 public abstract class Animal
 {
