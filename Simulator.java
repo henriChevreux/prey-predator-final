@@ -157,7 +157,7 @@ public class Simulator
         
 
         view.showStatus(timebox.getDay(), timebox.getHourOfDay(), 
-            timebox.getDayNightString(),timebox.getAMAndPMString(), field);
+            timebox.getDayNightString(),timebox.getAMAndPMString(),weatherbox.getWeather(), field);
     }
 
     /**
@@ -171,7 +171,7 @@ public class Simulator
 
         // Show the starting state in the view.
         view.showStatus(timebox.getDay(), timebox.getHourOfDay(), 
-            timebox.getDayNightString(),timebox.getAMAndPMString(), field);
+            timebox.getDayNightString(),timebox.getAMAndPMString(),weatherbox.getWeather(), field);
     }
 
     /**

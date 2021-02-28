@@ -9,7 +9,7 @@ public class Weatherbox
 {
     // instance variables - replace the example below with your own
     
-    private static final int WEATHER_CHANGE_FREQUENCY = 100;
+    private static final int WEATHER_CHANGE_FREQUENCY = 20;
     
     private static final double RAIN_PROBABILITY = 0.1;
     
@@ -70,5 +70,9 @@ public class Weatherbox
     private void rainAction(){};
     private void fogAction(){};
     private void sunAction(){};
+    
+    public String getWeather(){
+        return weather;
+    }
 }
 
