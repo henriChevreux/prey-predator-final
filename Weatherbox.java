@@ -98,12 +98,12 @@ public class Weatherbox
         Prey.resetFoodValue();
         Plant.resetGrowthRate();
     }
-    /** 
+      /** 
      * Gets the current weather.
      * @return a string correponding to 
      * the current weather status.
      */
-    public String getWeather(){
+        public String getWeather(){
         return weather;
     }
 }
