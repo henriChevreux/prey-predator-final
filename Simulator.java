@@ -15,21 +15,21 @@ public class Simulator
 {
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
-    private static final int DEFAULT_WIDTH = 120;
+    private static final int DEFAULT_WIDTH = 180;
     // The default depth of the grid.
-    private static final int DEFAULT_DEPTH = 80;
+    private static final int DEFAULT_DEPTH = 120;
     // The probability that a fox will be created in any given grid position.
-    private static final double LION_CREATION_PROBABILITY = 0.03;
+    private static final double LION_CREATION_PROBABILITY = 0.01;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double PANGOLIN_CREATION_PROBABILITY = 0.11;  
+    private static final double PANGOLIN_CREATION_PROBABILITY = 0.01;  
 
-    private static final double JAGUAR_CREATION_PROBABILITY = 0.05;
+    private static final double JAGUAR_CREATION_PROBABILITY = 0.01;
 
-    private static final double ANT_CREATION_PROBABILITY = 0.04;
+    private static final double ANT_CREATION_PROBABILITY = 0.10;
 
-    private static final double MONKEY_CREATION_PROBABILITY = 0.08;
+    private static final double MONKEY_CREATION_PROBABILITY = 0.10;
 
-    private static final double PLANT_CREATION_PROBABILITY = 0.02;
+    private static final double PLANT_CREATION_PROBABILITY = 0.10;
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -110,7 +110,7 @@ public class Simulator
 
         for(int step = 1; step <= numSteps && view.isViable(field); step++) {
             simulateOneStep();
-            delay(100);   // uncomment this to run more slowly
+            //delay(100);   // uncomment this to run more slowly
         }
     }
 

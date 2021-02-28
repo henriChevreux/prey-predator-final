@@ -12,10 +12,10 @@ public class Plant
 
     private Location location;
 
-    private static final double PLANT_GROWTH_RATE = 0.11;
+    private static final double PLANT_GROWTH_RATE = 0.07;
 
     //max size of a plant in centimeters.
-    private static final int MAX_SIZE = 15;
+    private static final int MAX_SIZE = 10;
 
     private static final Random rand = Randomizer.getRandom();
 

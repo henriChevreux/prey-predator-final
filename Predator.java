@@ -12,18 +12,18 @@ public  abstract class Predator extends Animal
 
 {
     // The age at which a jaguar can start to breed.
-    protected static final int BREEDING_AGE = 5;
+    protected static final int BREEDING_AGE = 15;
     // The age to which a lion can live.
-    protected static final int MAX_AGE = 90;
+    protected static final int MAX_AGE = 200;
     
     // The food value of a single monkey. In effect, this is the
     // number of steps a jaguar can go before it has to eat again.
     // A shared random number generator to control breeding.
     protected static final Random rand = Randomizer.getRandom();
     
-    protected static final int FOOD_VALUE = 15;
+    protected static final int FOOD_VALUE = 16;
     
-    protected static final int MAX_FOOD_VALUE = 8;
+    protected static final int MAX_FOOD_VALUE = 20;
 
     // Individual characteristics (instance fields).
     // The jaguar's age.
