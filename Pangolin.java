@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Pangolin extends Prey
 {
     // The likelihood of a pangolin breeding.
-    public static double BREEDING_PROBABILITY = 0.59;
+    public static double BREEDING_PROBABILITY = 0.95;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
 

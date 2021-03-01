@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Jaguar extends Predator
 {
     // The likelihood of a jaguar breeding.
-    public static double BREEDING_PROBABILITY = 0.196;
+    public static double BREEDING_PROBABILITY = 0.75;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
 

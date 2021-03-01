@@ -32,7 +32,7 @@ public class Simulator
     // The probability that a Monkey will be created in any given grid position.
     private static double MONKEY_CREATION_PROBABILITY = 0.08;
     // The probability that a Plant will be created in any given grid position.
-    private static double PLANT_CREATION_PROBABILITY = 0.03;
+    private static double PLANT_CREATION_PROBABILITY = 0.272;
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -247,12 +247,13 @@ public class Simulator
         return step;
     }
     
-    public void setProbs(double lionProb, double pangolinProb, double jaguarProb, double antProb, double monkeyProb){
+    public void setProbs(double lionProb, double pangolinProb, double jaguarProb, double antProb, double monkeyProb, double plant){
         Lion.BREEDING_PROBABILITY=lionProb;
         Pangolin.BREEDING_PROBABILITY=pangolinProb;
         Jaguar.BREEDING_PROBABILITY=jaguarProb;
         Ant.BREEDING_PROBABILITY=antProb;
         Monkey.BREEDING_PROBABILITY=monkeyProb;
+        PLANT_CREATION_PROBABILITY=plant;
     }
     
     public Field getField(){return field;}
