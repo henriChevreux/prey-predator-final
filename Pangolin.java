@@ -1,38 +1,43 @@
 import java.util.List;
 import java.util.Iterator;
 /**
- * A simple model of a rabbit.
- * Rabbits age, move, breed, and die.
+ * This class implements the behavior of pangolins.
+ * Pangolins are preys. They have all the 
+ * characteristics of preys, but have a specific
+ * breeding probability, and maximum litter size.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (2)
+ * @author Stanislas Jacquet and Henri Chevreux
+ * 
+ * @version 2021.02.28 
  */
 public class Pangolin extends Prey
 {
-    // Characteristics shared by all rabbits (class variables).
-    // The likelihood of a lion breeding.
+    // The likelihood of a pangolin breeding.
     private static final double BREEDING_PROBABILITY = 0.13;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 4;
-   
-   /**
-     * Create a new rabbit. A rabbit may be created with age
-     * zero (a new born) or with a random age.
+    private static final int MAX_LITTER_SIZE = 2;
+
+    /**
+     * Creates a pangolin. A jaguar is a prey and thus calls
+     * the constructor from the Prey superclass.
+     * A pangolin can be created as a new born (age zero
+     * and not hungry) or with a random age and food level.
+     * These attributes are defined in the Prey class.
      * 
-     * @param randomAge If true, the rabbit will have a random age.
+     * @param randomAge If true, the pangolin will have random age and hunger level.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
     public Pangolin(boolean randomAge, Field field, Location location)
     {
         super(randomAge, field, location);
-        
     }
-    
+
     /**
-     * This is what the rabbit does most of the time - it runs 
+     * This is what the pangolin does most of the time - it runs 
      * around. Sometimes it will breed or die of old age.
-     * @param newRabbits A list to return newly born rabbits.
+     * @param newPangolins A list to return newly born pangolins.
      */
     public void act(List<Animal> newPangolins)
     {
@@ -42,7 +47,7 @@ public class Pangolin extends Prey
             giveBirth(newPangolins);            
             // Move towards a source of food if found.
             Location newLocation = findPlant();
-            
+
             if(newLocation == null) { 
                 // No food found - try to move to a free location.
                 newLocation = getField().freeAdjacentLocation(getLocation());
@@ -54,25 +59,21 @@ public class Pangolin extends Prey
                     setDead();
                 }
             }
-            
+
             else {
                 setLocation(newLocation);
             }
         }
     }
-    
-    
-    
+
     /**
-     * Check whether or not this rabbit is to give birth at this step.
+     * Check whether or not this pangolin is to give birth at this step.
      * New births will be made into free adjacent locations.
-     * @param newRabbits A list to return newly born rabbits.
+     * @param newPangolins A list to return newly born pangolins.
      */
     public void giveBirth(List<Animal> newPangolins)
     {
-        // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.
-        
         Field field = getField();
         List<Location> adjLocations = field.adjacentLocations(this.getLocation());
         for (Location location : adjLocations){
@@ -89,10 +90,11 @@ public class Pangolin extends Prey
             }
         }
     }
-        
     /**
      * Generate a number representing the number of births,
-     * if it can breed.
+     * if a pangolin can breed.
+     * A pangolin needs to meet another 
+     * pangolin of opposite sex to breed.
      * @return The number of births (may be zero).
      */
     private int breed(Pangolin partner)
@@ -103,12 +105,5 @@ public class Pangolin extends Prey
         }
         return births;
     }
-    
-    protected double getBreedingProba(){return BREEDING_PROBABILITY;}
-    
-    protected int getMaxLitterSize(){
-        return MAX_LITTER_SIZE;
-    }
-    
 }
 

@@ -1,29 +1,46 @@
 import java.util.List;
 import java.util.Iterator;
 /**
- * Write a description of class Jaguar here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * This class implements the behavior of jaguars.
+ * Jaguars are predators. They have all the 
+ * characteristics of predators, but have a specific
+ * breeding probability, and maximum litter size.
+ * 
+ * @author David J. Barnes and Michael Kölling
+ * @author Stanislas Jacquet and Henri Chevreux
+ * 
+ * @version 2021.02.28
  */
 public class Jaguar extends Predator
 {
-    // The likelihood of a lion breeding.
-    private static final double BREEDING_PROBABILITY = 0.12;
+    // The likelihood of a jaguar breeding.
+    private static final double BREEDING_PROBABILITY = 0.08;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 4;
-    
-    
+    private static final int MAX_LITTER_SIZE = 2;
 
     /**
-     * Constructor for objects of class Jaguar
+     * Creates a jaguar. A jaguar is a predator and thus calls
+     * the constructor from the Predator superclass.
+     * A jaguar can be created as a new born (age zero
+     * and not hungry) or with a random age and food level.
+     * These attributes are defined in the Predator class.
+     * 
+     * @param randomAge If true, the jaguar will have random age and hunger level.
+     * @param field The field currently occupied.
+     * @param location The location within the field.     \
      */
     public Jaguar(boolean randomAge,Field field, Location location)
     {
-        // initialise instance variables
         super(randomAge, field, location);
     }
 
+    /**
+     * This is what the jaguar does most of the time: it hunts for
+     * preys. In the process, it might breed, die of hunger,
+     * or die of old age.
+     * @param field The field currently occupied.
+     * @param newJaguars A list to return newly born jaguars.
+     */
     public void act(List<Animal> newJaguars){
         incrementAge();
         incrementHunger();
@@ -46,13 +63,13 @@ public class Jaguar extends Predator
         }
     }
 
-    
-    
-    
-    public void giveBirth(List<Animal>newJaguars){
-        // New foxes are born into adjacent locations.
+    /**
+     * Check whether or not this Jaguar is to give birth at this step.
+     * New births will be made into free adjacent locations.
+     * @param newJaguars A list to return newly born jaguars.
+     */
+    public void giveBirth(List<Animal> newJaguars){
         // Get a list of adjacent free locations.
-        
         Field field = getField();
         List<Location> adjLocations = field.adjacentLocations(this.getLocation());
         for (Location location : adjLocations){
@@ -69,8 +86,13 @@ public class Jaguar extends Predator
             }
         }
     }
-    
-    
+     /**
+     * Generate a number representing the number of births,
+     * if a jaguar can breed.
+     * A jaguar needs to meet another 
+     * jaguar of opposite sex to breed.
+     * @return The number of births (may be zero).
+     */
     private int breed(Jaguar partner)
     {
         int births = 0;
@@ -79,20 +101,4 @@ public class Jaguar extends Predator
         }
         return births;
     }
-
-    
-    
-    
-    
-    
-    protected double getBreedingProba(){
-        return BREEDING_PROBABILITY;
-    }
-    
-    protected int getMaxLitterSize(){
-        return MAX_LITTER_SIZE;
-    }
-    
-    
 }
-

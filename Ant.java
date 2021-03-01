@@ -2,28 +2,30 @@ import java.util.List;
 import java.util.Iterator;
 
 /**
- * A simple model of a rabbit.
- * Rabbits age, move, breed, and die.
+ *This class implements the behavior of ants.
+ * Ants are preys. They have all the 
+ * characteristics of preys, but have a specific
+ * breeding probability, and maximum litter size.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (2)
+ * @author Stanislas Jacquet and Henri Chevreux 
+ * @version 2021.02.28
  */
 public class Ant extends Prey
 {
-    // Characteristics shared by all rabbits (class variables).
-
-
-
     // The likelihood of an ant breeding.
-    private static final double BREEDING_PROBABILITY = 0.12;
+    private static final double BREEDING_PROBABILITY = 0.10;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 3;
+    private static final int MAX_LITTER_SIZE = 2;
 
     /**
-     * Create a new ant. An ant may be created with age
-     * zero (a new born) or with a random age.
+    Creates an ant. An ant is a prey and thus calls
+     * the constructor from the Prey superclass.
+     * A monkey can be created as a new born (age zero
+     * and not hungry) or with a random age and food level.
+     * These attributes are defined in the Prey class.
      * 
-     * @param randomAge If true, the ant will have a random age.
+     * @param randomAge If true, the ant will have random age and hunger level.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
@@ -31,11 +33,11 @@ public class Ant extends Prey
     {
         super(randomAge, field, location);
     }
-    
+
     /**
      * This is what the ant does most of the time - it runs 
      * around. Sometimes it will breed or die of old age.
-         * @param newAnts A list to return newly born ants.
+     * @param newAnts A list to return newly born ants.
      */
     public void act(List<Animal> newAnts)
     {
@@ -60,17 +62,14 @@ public class Ant extends Prey
             }
         }
     }
-    
-    
-    
+
     /**
-     * Check whether or not this rabbit is to give birth at this step.
+     * Check whether or not this monkey is to give birth at this step.
      * New births will be made into free adjacent locations.
-     * @param newRabbits A list to return newly born rabbits.
+     * @param newAnts A list to return newly born ants.
      */
     public void giveBirth(List<Animal> newAnts)
     {
-        // New rabbits are born into adjacent locations.
         // Get a list of adjacent free locations.
         Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
@@ -81,10 +80,12 @@ public class Ant extends Prey
             newAnts.add(young);
         }
     }
-    
+
     /**
      * Generate a number representing the number of births,
-     * if it can breed.
+     * if an ant can breed.
+     * An ant needs to meet another 
+     * ant of opposite sex to breed.
      * @return The number of births (may be zero).
      */
     private int breed()
@@ -95,15 +96,5 @@ public class Ant extends Prey
         }
         return births;
     }
-    
-    
-    protected double getBreedingProba(){
-        return BREEDING_PROBABILITY;
-    }
-    
-    protected int getMaxLitterSize(){
-        return MAX_LITTER_SIZE;
-    }
-
 }
 

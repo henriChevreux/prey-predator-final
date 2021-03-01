@@ -6,8 +6,8 @@ import java.util.Iterator;
  * A class representing shared characteristics of animals.
  * 
  * @author David J. Barnes and Michael Kölling
- * @edited by Stanislas Jacquet and Henri Chevreux
- * @version 2021.02.28 (2)
+ * @author Stanislas Jacquet and Henri Chevreux
+ * @version 2021.02.28 
  */
 public abstract class Animal
 {
@@ -17,20 +17,22 @@ public abstract class Animal
     private Field field;
     // The animal's position in the field.
     private Location location;
-
+    //whether the animal is a male or not.
     private boolean male;
-
+    //whether the animal is infected by the disease.
     private boolean infected;
-
-    private static final double INFECTION_PROBABILITY = 0.2;
-    
+    //the probability that an animal gets infected
+    private static final double INFECTION_PROBABILITY = 0.08;
+    //the probability that an animal dies because he is infected
     private static final double FATALITY_PROBABILITY = 0.01;
 
-    // A shared random number generator to control breeding.
+    // A shared random number generator
     protected static final Random rand = Randomizer.getRandom();
 
     /**
      * Create a new animal at location in field.
+     * Animal can either be a male or a female 
+     * Animal has a chance to be infected when created.
      * 
      * @param field The field currently occupied.
      * @param location The location within the field.
@@ -42,7 +44,7 @@ public abstract class Animal
         setLocation(location);
         male = rand.nextBoolean();
         infected = false;
-        
+
         if (rand.nextDouble() <= INFECTION_PROBABILITY) {infected = true;}
     }
 
@@ -62,8 +64,17 @@ public abstract class Animal
         return alive;
     }
 
+    /**
+     * Check whether the animal is a male or not.
+     * @return true if the animal is a male.
+     */
     public boolean isMale(){return male;}
 
+    /**
+     * Check whether the animal is infected by the disease
+     * or not.
+     * @return true if the animal is infected.
+     */
     public boolean isInfected(){return infected;}
 
     /**
@@ -110,7 +121,14 @@ public abstract class Animal
     {
         return field;
     }
-    
+
+    /**
+     * Describes the behavior of the disease.
+     * If an animal is alive and infected 
+     * then if there are other animals in its 
+     * adjacent locations, the infected animal
+     * has a random chance of infecting other animals.
+     */
     protected void spreadInfection()
     {
         if (infected && alive) {
@@ -122,18 +140,18 @@ public abstract class Animal
                 Object entity = field.getObjectAt(where);
                 if(entity instanceof Animal) {
                     Animal animal = (Animal) entity;
-                        if(animal.isAlive() && rand.nextDouble() <= INFECTION_PROBABILITY) { 
-                            animal.infect();
-                        }
+                    if(alive && rand.nextDouble() <= INFECTION_PROBABILITY) { 
+                        infect();
+                    }
                 }
             }
             if (rand.nextDouble() <= FATALITY_PROBABILITY) {setDead();}
         }
     }
-    
-    
-    protected void infect() {infected = true;}
-    
-    //protected abstract int getFoodValue();
-    
+
+    /**
+     * Sets the value of 'infected' variable to true
+     * when a animal is infected by the disease.
+     */
+    protected void infect() {infected = true;}    
 }

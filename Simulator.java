@@ -5,38 +5,40 @@ import java.util.Iterator;
 import java.awt.Color;
 
 /**
- * A simple predator-prey simulator, based on a rectangular field
- * containing rabbits and foxes.
+ * A predator-prey simulator, based on a rectangular field
+ * containing 5 species : 2 predator species (lion and jaguar) 
+ * and 3 prey species (ant, pangolin, monkey) that get eaten by predators.
+ * This simulator also simulates the behavior of plants (plants are considered
+ * to be any type of plants).
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (2)
+ * 
+ * @author David J. Barnes and Michael Kölling, Stanislas Jacquet, Henri Chevreux
+ * @version 2021.02.28 
  */
 public class Simulator
 {
-    // Constants representing configuration information for the simulation.
     // The default width for the grid.
     private static final int DEFAULT_WIDTH = 180;
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 120;
-    // The probability that a fox will be created in any given grid position.
-    private static final double LION_CREATION_PROBABILITY = 0.01;
-    // The probability that a rabbit will be created in any given grid position.
-    private static final double PANGOLIN_CREATION_PROBABILITY = 0.01;  
-
-    private static final double JAGUAR_CREATION_PROBABILITY = 0.01;
-
-    private static final double ANT_CREATION_PROBABILITY = 0.10;
-
-    private static final double MONKEY_CREATION_PROBABILITY = 0.10;
-
-    private static final double PLANT_CREATION_PROBABILITY = 0.10;
+    // The probability that a Lion will be created in any given grid position.
+    private static final double LION_CREATION_PROBABILITY = 0.03;
+    // The probability that a Pangolin will be created in any given grid position.
+    private static final double PANGOLIN_CREATION_PROBABILITY = 0.08;  
+    // The probability that a Jaguar will be created in any given grid position.
+    private static final double JAGUAR_CREATION_PROBABILITY = 0.03;
+    // The probability that an Ant will be created in any given grid position.
+    private static final double ANT_CREATION_PROBABILITY = 0.08;
+    // The probability that a Monkey will be created in any given grid position.
+    private static final double MONKEY_CREATION_PROBABILITY = 0.08;
+    // The probability that a Plant will be created in any given grid position.
+    private static final double PLANT_CREATION_PROBABILITY = 0.03;
 
     // List of animals in the field.
     private List<Animal> animals;
     //list of plants in the field.
     private List<Plant> plants;
     // The current state of the field.
-    //list of sick animals in the field    
     private Field field;
     // The current step of the simulation.
     private static int step;
@@ -44,6 +46,7 @@ public class Simulator
     private SimulatorView view;
     // A timebox object to manipulate time-related information
     private Timebox timebox;
+    // A weatherbox object to manipulate weather-related information
     private Weatherbox weatherbox;
     /**
      * Construct a simulation field with default size.
@@ -74,14 +77,18 @@ public class Simulator
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        view.setColor(Pangolin.class, Color.GRAY);
-        view.setColor(Lion.class, Color.YELLOW);
+        view.setColor(Pangolin.class, Color.PINK);
+        view.setColor(Lion.class, Color.ORANGE);
         view.setColor(Monkey.class, Color.BLUE);
         view.setColor(Ant.class, Color.RED);
         view.setColor(Jaguar.class, Color.BLACK);
         view.setColor(Plant.class, Color.GREEN);
+        
         //Create a timebox object
         timebox = new Timebox();
+        
+        //Create a weatherbox object and
+        //sets the current weather to "sun".
         weatherbox = new Weatherbox();
         weatherbox.setWeather("sun");
 
@@ -117,7 +124,10 @@ public class Simulator
     /**
      * Run the simulation from its current state for a single step.
      * Iterate over the whole field updating the state of each
-     * fox and rabbit.
+     * predators and prey only during the day
+     * Iterate over the whole field to determine free locations
+     * in order to add new plants to random free locations 
+     * in the field, only during the day.
      */
     public void simulateOneStep()
     {
@@ -125,7 +135,7 @@ public class Simulator
         weatherbox.generateWeather();
         // Provide space for newborn animals.
         List<Animal> newAnimals = new ArrayList<>();        
-        // Let all rabbits act.
+        // Let all anoimals act.
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
             if(timebox.isDay()){
@@ -138,7 +148,7 @@ public class Simulator
         }
         
         Random rand = Randomizer.getRandom();
-        
+        //let all plants act.
         if (timebox.isDay()){
             for(int row = 0; row < field.getDepth(); row++) {
                 for(int col = 0; col < field.getWidth(); col++) {
@@ -175,7 +185,7 @@ public class Simulator
     }
 
     /**
-     * Randomly populate the field with foxes and rabbits.
+     * Randomly populate the field with predators,preys and plants.
      */
     private void populate()
     {
@@ -228,7 +238,10 @@ public class Simulator
             // wake up
         }
     }
-    
+    /**
+     * Gets the current number of steps since start of simulation
+     * @return total number of steps as integer.
+     */
     public static int getStep()
     {
         return step;

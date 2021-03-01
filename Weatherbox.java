@@ -3,7 +3,7 @@ import java.util.Random;
  * This class corresponds to the implementation of 
  * the weather logic for the simulator. 
  * The weather can be foggy rainy or sunny and changes randomly
- * every 20 steps.
+ * every X number of steps.
  *
  * @author Stanislas Jacquet and Henri Chevreux
  * @version 2021.02.28
@@ -14,11 +14,11 @@ public class Weatherbox
     
     private static final double RAIN_PROBABILITY = 0.2;
     
-    private static final double FOG_PROBABILITY = 0.7;
+    private static final double FOG_PROBABILITY = 0.1;
     
     private String weather;
     
-    protected static final Random rand = Randomizer.getRandom();
+    private static final Random rand = Randomizer.getRandom();
     
     /**
      * Constructor for objects of class WeatherBox
@@ -88,7 +88,7 @@ public class Weatherbox
      * Defines the behavior of a foggy weather.
      */
     private void fogAction(){
-        Prey.setFoodValue(2);
+        Prey.setFoodValue(6);
         Plant.resetGrowthRate();
     }
      /**
