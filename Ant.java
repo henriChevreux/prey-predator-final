@@ -95,15 +95,6 @@ public class Ant extends Prey
         }
         return births;
     }
-    
-    
-    protected double getBreedingProba(){
-        return BREEDING_PROBABILITY;
-    }
-    
-    protected int getMaxLitterSize(){
-        return MAX_LITTER_SIZE;
-    }
 
 }
 

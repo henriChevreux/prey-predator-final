@@ -98,18 +98,10 @@ public class Lion extends Predator
     private int breed(Lion partner)
     {
         int births = 0;
-        if(canBreed() && rand.nextDouble() <= getBreedingProba() && partner.isMale() != this.isMale()) {
-            births = rand.nextInt(getMaxLitterSize()) + 1;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY && partner.isMale() != this.isMale()) {
+            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }
         return births;
-    }
-    
-    protected double getBreedingProba(){
-        return BREEDING_PROBABILITY;
-    }
-    
-    protected int getMaxLitterSize(){
-        return MAX_LITTER_SIZE;
     }
 }
     

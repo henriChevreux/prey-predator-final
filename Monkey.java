@@ -86,20 +86,6 @@ public class Monkey extends Prey
     }
     
     protected static int getFoodValue(){return foodValue;}
-    
-    protected double getBreedingProba(){
-        return BREEDING_PROBABILITY;
-    }
-    
-    protected int getMaxLitterSize(){
-        return MAX_LITTER_SIZE;
-    }
-    
-    
-    
-    protected int getBreedingAge(){
-        return BREEDING_AGE;
-    }
-    
+
 }
 
