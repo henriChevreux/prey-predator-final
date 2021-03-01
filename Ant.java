@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Ant extends Prey
 {
     // The likelihood of an ant breeding.
-    public static double BREEDING_PROBABILITY = 0.3;
+    public static double BREEDING_PROBABILITY = 0.3201;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
 

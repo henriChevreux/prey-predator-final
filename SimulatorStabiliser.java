@@ -98,7 +98,7 @@ public class SimulatorStabiliser
             m = Math.random();
             simulator.setProbs(l,p,j,a,m);
             simulator.reset();
-            simulator.simulate(10,0);
+            simulator.simulate(21,0);
                         
             System.out.println("Lion: "+l+" Pangolin: "+p+" Jaguar: "+j+" Ant: "+a+" Monkey: "+m);
             if (stats.isViable(field)){viableParameters = true;System.out.print("Stable!");return;}
