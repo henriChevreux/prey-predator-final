@@ -3,7 +3,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Random;
-//import java.Math;
 
 /**
  * The test class SimulatorTest.
@@ -44,51 +43,14 @@ public class SimulatorStabiliser
     }
 
     @Test
-    public void stabiliseByIteration()
-    {
-        Simulator simulator = new Simulator();
-        double step = 0.01;
-        double init = 0.02;
-        double max = 0.15;
-        SimulatorView view = simulator.getView();
-        FieldStats stats = view.getStats();
-        Field field = simulator.getField();
-        stats.setViableParameter(5);
-
-        for (double l=init; l<max; l+=step){
-            for (double p=init; p<max; p+=step){
-                for (double j=init; j<max; j+=step){
-                    for (double a=init; a<max; a+=step){
-                        for (double m=init; m<max; m+=step){
-                            
-                            simulator.setProbs(l,p,j,a,m);
-                            simulator.reset();
-                            simulator.simulate(10,0);
-                        
-                            System.out.println("Lion: "+l+" Pangolin: "+p+" Jaguar: "+j+" Ant: "+a+" Monkey: "+m);
-                            if (stats.isViable(field)){System.out.print("Stable!");return;}
-                            
-                        }
-                    }
-                }
-            }
-        }
-        
-    }
-    
-    @Test
     public void stabiliseByRandom()
     {
         Simulator simulator = new Simulator();
-        
-        Random rand = Randomizer.getRandom();
-        double min = 0.02;
-        double max = 0.15;
         SimulatorView view = simulator.getView();
         FieldStats stats = view.getStats();
         Field field = simulator.getField();
         stats.setViableParameter(5);
-        double l,p,j,a,m;
+        double l,p,j,a,m,plant;
         boolean viableParameters = false;
         while (!viableParameters){
             l = Math.random();
@@ -96,11 +58,13 @@ public class SimulatorStabiliser
             j = Math.random();
             a = Math.random();
             m = Math.random();
-            simulator.setProbs(l,p,j,a,m);
+            plant = Math.random()*0.4; //avoids simulations where plants overcrowd the field
+            simulator.setProbs(l,p,j,a,m, plant);
             simulator.reset();
-            simulator.simulate(21,0);
+
+            simulator.simulate(25,0);
                         
-            System.out.println("Lion: "+l+" Pangolin: "+p+" Jaguar: "+j+" Ant: "+a+" Monkey: "+m);
+            System.out.println("Lion: "+l+" Pangolin: "+p+" Jaguar: "+j+" Ant: "+a+" Monkey: "+m+" Plant: "+plant);
             if (stats.isViable(field)){viableParameters = true;System.out.print("Stable!");return;}
         }
     }
