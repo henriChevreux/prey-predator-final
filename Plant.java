@@ -1,51 +1,74 @@
 import java.util.List;
 import java.util.Random;
 /**
- * Write a description of class Plant here.
+ * This class implements the behavior of plants.
+ * Plants have a maximum size, a growth rate and the food 
+ * value they give when they are eaten by preys corresponds to 
+ * their sizes.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author David J. Barnes and Michael Kölling
+ * @author Stanislas Jacquet and Henri Chevreux 
+ * 
+ * @version 2021.02.28
  */
 public class Plant 
 {
+    //The plant's field
     private Field field;
-
+    //The plant's location
     private Location location;
-
-    protected static final double DEFAULT_GROWTH_RATE = 0.07;
-
-    //max size of a plant in centimeters.
-    private static final int MAX_SIZE = 10;
-
+    //the plant's default growth rate
+    private static final double DEFAULT_GROWTH_RATE = 0.08;
+    //maximum size of a plant 
+    private static final int MAX_SIZE = 6;
+    // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-
+    //The current size of the plant
     private int size;    
-
+    // Whether the plant is alive or not.
     private boolean alive;
-    
-    protected static double plantGrowthRate;
+    //the plant's growth rate 
+    private static double plantGrowthRate;
 
     /**
-     * Constructor for objects of class Plant
+     *Creates a new plant.
+     * A plant can be created as a new born 
+     * (size zero) or with a random size 
+     * 
+     * @param randomSize If true, the plant will have random size.
+     * @param field The field currently occupied.
+     * @param location The location within the field.
      */
     public Plant(boolean randomSize, Field field, Location location)
     {
         this.field = field;
         setLocation(location);
         alive = true;
-
-        size = rand.nextInt(MAX_SIZE);
+        if(randomSize){
+            size = rand.nextInt(MAX_SIZE);
+        } else{
+            size = 0;
+        }
         plantGrowthRate = DEFAULT_GROWTH_RATE;
     }
 
-    public void act (List<Plant> newPlants){
+    /**
+     * This is what the plant does most of the time - 
+     * it is static, doesn't move and it can grow in size.
+     * @param newPlants A list to return newly born ants.
+     */
+
+    public void act (){
         if (isAlive()){
             growPlant();
+        }
     }
-}
 
     /**
-     * we assume that the foodvalue of a plant is equal to its size
+     * A plant can grow if its current size is inferior
+     * to its maximum size, and if a randomly generated number 
+     * is inferior to its growth rate. If a plant has a bigger size 
+     * than its maximum size, then it dies.
      */
 
     private void growPlant(){
@@ -59,6 +82,11 @@ public class Plant
         } 
     }
 
+    /**
+     * Place the plant at the new location in the given field.
+     * @param newLocation The animal's new location.
+     */
+
     protected void setLocation(Location newLocation)
     {
         if(location != null) {
@@ -68,10 +96,18 @@ public class Plant
         field.place(this, newLocation);
     }
 
+    /**
+     * Checks whether a plant is alive.
+     * @return true if plant is alive.
+     */
     public boolean isAlive(){
         return alive;
     }
 
+    /**
+     * Indicate that the plant is no longer alive.
+     * It is removed from the field.
+     */
     public void setDead(){
         alive = false;
         if(location != null) {
@@ -84,15 +120,17 @@ public class Plant
     protected int getSize(){
         return size;
     }
+
     protected double getPlantGrowthRate(){
         return plantGrowthRate;
     }
+
     public static void divideGrowthRate(){
         plantGrowthRate = plantGrowthRate/2;
     }
+
     public static void resetGrowthRate(){
         plantGrowthRate = DEFAULT_GROWTH_RATE;
     }
-    
-    
+
 }

@@ -7,13 +7,14 @@ import java.util.HashMap;
  * for any class of object that is found within the field.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @edited by Stanislas Jacquet and Henri Chevreux
+ * @version 2021.02.28
  */
 public class FieldStats
 {
-    // Counters for each type of entity (fox, rabbit, etc.) in the simulation.
+    // Counters for each type of entity (lion, jaguar, etc.) in the simulation.
     private HashMap<Class, Counter> counters;
-    
+    //counter for infected species in the simulation.
     private int infectedCounter = 0;
     // Whether the counters are currently up to date.
     private boolean countsValid;
@@ -61,7 +62,7 @@ public class FieldStats
             Counter count = counters.get(key);
             count.reset();
         }
-        infectedCounter=0;
+        infectedCounter = 0;
     }
 
     /**
@@ -110,8 +111,8 @@ public class FieldStats
     }
     
     /**
-     * Generate counts of the number of foxes and rabbits.
-     * These are not kept up to date as foxes and rabbits
+     * Generate counts of the number of entities in the field.
+     * These are not kept up to date as animals and plants
      * are placed in the field, but only when a request
      * is made for the information.
      * @param field The field to generate the stats for.
@@ -129,11 +130,16 @@ public class FieldStats
         }
         countsValid = true;
     }
-    
+    /**
+     * Gets the total number of infected animals.
+     * @return value of infectedCounter as integer.
+     */
     public int getInfectedCounter()
     {
         return infectedCounter;
     }
-    
+    /**
+     * Increments counter of infected animals by one.
+     */
     public void incrementInfectedCounter(){infectedCounter++;}
 }

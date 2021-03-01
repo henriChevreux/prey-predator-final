@@ -12,7 +12,8 @@ import java.util.Map;
  * setColor method.
  * 
  * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @edited by Stanislas Jacquet and Henri Chevreux
+ * @version 2021.02.28
  */
 public class SimulatorView extends JFrame
 {
@@ -29,7 +30,7 @@ public class SimulatorView extends JFrame
     private final String POPULATION_PREFIX = "Population: ";
     private final String INFECTION_PREFIX = "Infected Species: ";
     private JLabel stepLabel, population, infoLabel, diseaseLabel;
-    private JButton resetButton;
+    private JButton quitButton;
     private FieldView fieldView;
 
     // A map for storing colors for participants in the simulation
@@ -49,10 +50,9 @@ public class SimulatorView extends JFrame
 
         setTitle("Predator Prey  Simulation");
         stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
-        infoLabel = new JLabel("  ", JLabel.CENTER);
         population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
         diseaseLabel = new JLabel(INFECTION_PREFIX, JLabel.CENTER);
-        resetButton = new JButton("Quit");
+        quitButton = new JButton("Quit");
 
         setLocation(100, 50);
 
@@ -62,9 +62,8 @@ public class SimulatorView extends JFrame
 
         JPanel infoPane = new JPanel(new BorderLayout());
         infoPane.add(stepLabel, BorderLayout.WEST);
-        infoPane.add(resetButton, BorderLayout.EAST);
+        infoPane.add(quitButton, BorderLayout.EAST);
         infoPane.add(diseaseLabel, BorderLayout.CENTER);
-        //infoPane.add(infoLabel, BorderLayout.CENTER);
         contents.add(infoPane, BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add(population, BorderLayout.SOUTH);
@@ -121,7 +120,10 @@ public class SimulatorView extends JFrame
             + " " + dayStatus + "  "+ WEATHER_PREFIX+ weather);
         stats.reset();
 
-        resetButton.addActionListener(e -> System.exit(0));
+        //defines the action when the user's clicks on "Quit" button.
+        //Quit button exits the simulator and VM.
+        quitButton.addActionListener(e -> System.exit(0));
+
         fieldView.preparePaint();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
