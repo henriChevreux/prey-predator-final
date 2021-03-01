@@ -103,8 +103,5 @@ public class Monkey extends Prey
         }
         return births;
     }
-    
-    protected static int getFoodValue(){return foodValue;}
-
 }
 
