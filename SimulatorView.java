@@ -243,4 +243,6 @@ public class SimulatorView extends JFrame
             }
         }
     }
+    public FieldStats getStats() {return stats;}
+    
 }

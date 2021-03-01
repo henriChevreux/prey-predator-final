@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Lion extends Predator
 {
     // The likelihood of a lion breeding.
-    private static final double BREEDING_PROBABILITY = 0.08;
+    public static double BREEDING_PROBABILITY = 0.1;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     

@@ -22,17 +22,17 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 120;
     // The probability that a Lion will be created in any given grid position.
-    private static final double LION_CREATION_PROBABILITY = 0.03;
+    private static double LION_CREATION_PROBABILITY = 0.04;
     // The probability that a Pangolin will be created in any given grid position.
-    private static final double PANGOLIN_CREATION_PROBABILITY = 0.08;  
+    private static double PANGOLIN_CREATION_PROBABILITY = 0.08;  
     // The probability that a Jaguar will be created in any given grid position.
-    private static final double JAGUAR_CREATION_PROBABILITY = 0.03;
+    private static double JAGUAR_CREATION_PROBABILITY = 0.03;
     // The probability that an Ant will be created in any given grid position.
-    private static final double ANT_CREATION_PROBABILITY = 0.08;
+    private static double ANT_CREATION_PROBABILITY = 0.08;
     // The probability that a Monkey will be created in any given grid position.
-    private static final double MONKEY_CREATION_PROBABILITY = 0.08;
+    private static double MONKEY_CREATION_PROBABILITY = 0.08;
     // The probability that a Plant will be created in any given grid position.
-    private static final double PLANT_CREATION_PROBABILITY = 0.03;
+    private static double PLANT_CREATION_PROBABILITY = 0.03;
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -246,5 +246,16 @@ public class Simulator
     {
         return step;
     }
+    
+    public void setProbs(double lionProb, double pangolinProb, double jaguarProb, double antProb, double monkeyProb){
+        Lion.BREEDING_PROBABILITY=lionProb;
+        Pangolin.BREEDING_PROBABILITY=pangolinProb;
+        Jaguar.BREEDING_PROBABILITY=jaguarProb;
+        Ant.BREEDING_PROBABILITY=antProb;
+        Monkey.BREEDING_PROBABILITY=monkeyProb;
+    }
+    
+    public Field getField(){return field;}
+    public SimulatorView getView(){return view;}
 }
 

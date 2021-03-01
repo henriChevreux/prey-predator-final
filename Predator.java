@@ -17,7 +17,7 @@ public  abstract class Predator extends Animal
 
 {
     // The age at which a predator can start to breed.
-    private static final int BREEDING_AGE = 15;
+    private static final int BREEDING_AGE = 10;
     // The age to which a predator can live.
     private static final int MAX_AGE = 150;
     //maximum food level a predator can have

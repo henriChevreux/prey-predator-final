@@ -18,6 +18,8 @@ public class FieldStats
     private int infectedCounter = 0;
     // Whether the counters are currently up to date.
     private boolean countsValid;
+    
+    private int viableParameter;
 
     /**
      * Construct a FieldStats object.
@@ -28,6 +30,7 @@ public class FieldStats
         // we might find
         counters = new HashMap<>();
         countsValid = true;
+        viableParameter = 1;
     }
 
     /**
@@ -92,7 +95,7 @@ public class FieldStats
     /**
      * Determine whether the simulation is still viable.
      * I.e., should it continue to run.
-     * @return true If there is more than one species alive.
+     * @return true If all species are alive.
      */
     public boolean isViable(Field field)
     {
@@ -107,7 +110,7 @@ public class FieldStats
                 nonZero++;
             }
         }
-        return nonZero > 1;
+        return nonZero > viableParameter;
     }
     
     /**
@@ -142,4 +145,6 @@ public class FieldStats
      * Increments counter of infected animals by one.
      */
     public void incrementInfectedCounter(){infectedCounter++;}
+    
+    public void setViableParameter(int newParameter){viableParameter=newParameter;}
 }
