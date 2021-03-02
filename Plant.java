@@ -132,5 +132,4 @@ public class Plant
     public static void resetGrowthRate(){
         plantGrowthRate = DEFAULT_GROWTH_RATE;
     }
-
 }

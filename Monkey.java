@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Monkey extends Prey
 {
     // The likelihood of a monkey breeding.
-    public static double BREEDING_PROBABILITY = 0.96;
+    private static double breedingProbability = 0.96;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
 
@@ -97,10 +97,12 @@ public class Monkey extends Prey
     private int breed(Monkey partner)
     {
         int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY && partner.isMale() != isMale()) {
+        if(canBreed() && rand.nextDouble() <= breedingProbability && partner.isMale() != isMale()) {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }
         return births;
     }
+    
+    public static void setBreedingProbability(double newBreedingProba){breedingProbability=newBreedingProba;}
 }
 

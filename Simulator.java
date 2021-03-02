@@ -107,9 +107,10 @@ public class Simulator
     }
 
     /**
-     * Run the simulation from its current state for the given number of steps.
+     * Run the simulation from its current state for the given number of hours and days.
      * Stop before the given number of steps if it ceases to be viable.
-     * @param numSteps The number of steps to run for.
+     * @param numHours The number of hours to run for.
+     * @param numDays The number of days to run for (one day is 24 hours).
      */
     public void simulate(int numDays, int numHours)
     {
@@ -248,15 +249,21 @@ public class Simulator
         return step;
     }
     
-    public void setProbs(double lionProb, double pangolinProb, double jaguarProb, double antProb, double monkeyProb, double plant){
-        Lion.BREEDING_PROBABILITY=lionProb;
-        Pangolin.BREEDING_PROBABILITY=pangolinProb;
-        Jaguar.BREEDING_PROBABILITY=jaguarProb;
-        Ant.BREEDING_PROBABILITY=antProb;
-        Monkey.BREEDING_PROBABILITY=monkeyProb;
-        PLANT_CREATION_PROBABILITY=plant;
-    }
+    /**
+     * Sets the breeding probabilities of each animal and the plant creation probability.
+     * Used in the stabiliseByRandom method of SimulatorStabiliser test class to create 
+     * a new set of random probabilities.
+     */
     
+    public void setProbs(double lionProb, double pangolinProb, double jaguarProb, double antProb, double monkeyProb, double plant){
+        Lion.setBreedingProbability(lionProb);
+        Pangolin.setBreedingProbability(pangolinProb);
+        Jaguar.setBreedingProbability(jaguarProb);
+        Ant.setBreedingProbability(antProb);
+        Monkey.setBreedingProbability(monkeyProb);
+        PLANT_CREATION_PROBABILITY=plant;   
+    }
+    //getters used for the SimulatorStabiliser 
     public Field getField(){return field;}
     public SimulatorView getView(){return view;}
 }

@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Lion extends Predator
 {
     // The likelihood of a lion breeding.
-    public static double BREEDING_PROBABILITY = 0.5614;
+    private static double breedingProbability = 0.5614;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     
@@ -101,11 +101,13 @@ public class Lion extends Predator
     private int breed(Lion partner)
     {
         int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY && partner.isMale() != this.isMale()) {
+        if(canBreed() && rand.nextDouble() <= breedingProbability && partner.isMale() != this.isMale()) {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }
         return births;
     }
+    
+    public static void setBreedingProbability(double newBreedingProba){breedingProbability=newBreedingProba;}
 }
     
 

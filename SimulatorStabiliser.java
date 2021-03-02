@@ -2,13 +2,12 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Random;
 
 /**
- * The test class SimulatorTest.
+ * This test class is used to stabilise the breeding parameters.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author  David J. Barnes and Michael Kölling, Stanislas Jacquet, Henri Chevreux
+ * @version 2021.02.28 
  */
 public class SimulatorStabiliser
 {
