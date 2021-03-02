@@ -81,7 +81,8 @@ public abstract class Prey extends Animal
     }
 
     /**
-     * 
+     * Returns the food value of a prey.
+     * @return foodValue the int food value of a prey.
      */
     protected static int getFoodValue(){return foodValue;}
 

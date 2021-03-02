@@ -40,7 +40,12 @@ public class SimulatorStabiliser
     public void tearDown()
     {
     }
-
+    /**
+     * Runs multiple simulations with random breeding parameters for animals and creation probability 
+     * for plants until it finds a set of parameters where no specie is extinct after a given number of days.
+     * To avoid the generation of the same random sequence, 
+     * the method Math.random() is used rather than Random.nextDouble().
+     */
     @Test
     public void stabiliseByRandom()
     {

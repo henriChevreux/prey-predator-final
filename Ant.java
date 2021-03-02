@@ -96,7 +96,14 @@ public class Ant extends Prey
         }
         return births;
     }
-    
-    public static void setBreedingProbability(double newBreedingProb){breedingProbability=newBreedingProb;}
+    /**
+     * Gets the associated field of the simulator.
+     * @param newBreedingProba The new double probability between 0 and 1.
+     */
+    public static void setBreedingProbability(double newBreedingProba){
+        if(newBreedingProba >=0.00 && newBreedingProba <= 1.00){
+            breedingProbability=newBreedingProba;
+        }
+    }
 }
 

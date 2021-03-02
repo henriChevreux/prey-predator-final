@@ -116,19 +116,30 @@ public class Plant
             field = null;
         }
     }
-
+    /**
+     * Gets the size of the plant.
+     * @return size the int size value of the plant.
+     */
     protected int getSize(){
         return size;
     }
-
+    /**
+     * Gets the growth rate of the plant.
+     * @return plantGrowthRate the double growth rate of all plants between 0 and 1.
+     */
     protected double getPlantGrowthRate(){
         return plantGrowthRate;
     }
-
+    /**
+     * Divides by two the growth rate of plants.
+     * This is triggered when it is raining.
+     */
     public static void divideGrowthRate(){
         plantGrowthRate = plantGrowthRate/2;
     }
-
+    /**
+     * Resets the growth rate of plants.
+     */
     public static void resetGrowthRate(){
         plantGrowthRate = DEFAULT_GROWTH_RATE;
     }

@@ -101,6 +101,13 @@ public class Jaguar extends Predator
         }
         return births;
     }
-    
-    public static void setBreedingProbability(double newBreedingProba){breedingProbability=newBreedingProba;}
+    /**
+     * Gets the associated field of the simulator.
+     * @param newBreedingProba The new double probability between 0 and 1.
+     */
+    public static void setBreedingProbability(double newBreedingProba){
+        if(newBreedingProba>=0.00 && newBreedingProba<=1.00){
+            breedingProbability=newBreedingProba;
+        }
+    }
 }

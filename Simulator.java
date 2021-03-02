@@ -254,7 +254,6 @@ public class Simulator
      * Used in the stabiliseByRandom method of SimulatorStabiliser test class to create 
      * a new set of random probabilities.
      */
-    
     public void setProbs(double lionProb, double pangolinProb, double jaguarProb, double antProb, double monkeyProb, double plant){
         Lion.setBreedingProbability(lionProb);
         Pangolin.setBreedingProbability(pangolinProb);
@@ -264,7 +263,19 @@ public class Simulator
         PLANT_CREATION_PROBABILITY=plant;   
     }
     //getters used for the SimulatorStabiliser 
-    public Field getField(){return field;}
-    public SimulatorView getView(){return view;}
+    /**
+     * Gets the associated field of the simulator.
+     * @return Field object of the simulator.
+     */
+    public Field getField(){
+        return field;
+    }
+    /**
+     * Gets the associated simulator view of the simulator.
+     * @return SimulatorView object of the simulator.
+     */
+    public SimulatorView getView(){
+        return view;
+    }
 }
 
