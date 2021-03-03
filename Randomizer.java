@@ -32,8 +32,7 @@ public class Randomizer
     {
         if(useShared) {
             return rand;
-        }
-        else {
+        } else {
             return new Random();
         }
     }

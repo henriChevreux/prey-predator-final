@@ -27,6 +27,7 @@ public class Weatherbox
     {
         
     }
+    
     /**
      * Changes the status of the weather randomly
      * every X number of steps.
@@ -47,6 +48,7 @@ public class Weatherbox
             }
         }
     }
+    
     /**
      * Sets the weather to one of the three weather status.
      * Each weather status correspond to one case in the switch
@@ -77,33 +79,33 @@ public class Weatherbox
         }
     }
 
-     /**
+    /**
      * Defines the behavior of a rainy weather
      */
     private void rainAction(){
-    Plant.divideGrowthRate();
-    Prey.resetFoodValue();
+        Plant.divideGrowthRate();
+        Prey.resetFoodValue();
     }
-     /**
+    /**
      * Defines the behavior of a foggy weather.
      */
     private void fogAction(){
         Prey.setFoodValue(6);
         Plant.resetGrowthRate();
     }
-     /**
+    /**
      * Defines the behavior of a sunny weather.
      */
     private void sunAction(){
         Prey.resetFoodValue();
         Plant.resetGrowthRate();
     }
-      /** 
+    /** 
      * Gets the current weather.
      * @return a string correponding to 
      * the current weather status.
      */
-        public String getWeather(){
+    public String getWeather(){
         return weather;
     }
 }

@@ -55,18 +55,16 @@ public class Lion extends Predator
                 newLocation = getField().freeAdjacentLocation(getLocation());
                 if (newLocation != null) {
                     setLocation(newLocation);
-                }
-                else {
+                } else {
                     // Overcrowding.
                     setDead();
                 }
-            }
-            
-            else {
+            } else {
                 setLocation(newLocation);
             }
         }
     }
+    
      /**
      * Check whether or not this Lion is to give birth at this step.
      * New births will be made into free adjacent locations.
@@ -91,6 +89,7 @@ public class Lion extends Predator
             }
         }
     }
+    
      /**
      * Generate a number representing the number of births,
      * if a lion can breed.
@@ -106,6 +105,7 @@ public class Lion extends Predator
         }
         return births;
     }
+    
     /**
      * Gets the associated field of the simulator.
      * @param newBreedingProba The new double probability between 0 and 1.

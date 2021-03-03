@@ -45,7 +45,8 @@ public class Jaguar extends Predator
         incrementAge();
         incrementHunger();
         if(isAlive()) {
-            giveBirth(newJaguars);            
+            giveBirth(newJaguars);  
+            
             // Move towards a source of food if found.
             Location newLocation = findFood();
             if(newLocation == null) { 
@@ -55,8 +56,7 @@ public class Jaguar extends Predator
             // See if it was possible to move.
             if(newLocation != null) {
                 setLocation(newLocation);
-            }
-            else {
+            } else {
                 // Overcrowding.
                 setDead();
             }
@@ -86,6 +86,7 @@ public class Jaguar extends Predator
             }
         }
     }
+    
      /**
      * Generate a number representing the number of births,
      * if a jaguar can breed.
@@ -101,6 +102,7 @@ public class Jaguar extends Predator
         }
         return births;
     }
+    
     /**
      * Gets the associated field of the simulator.
      * @param newBreedingProba The new double probability between 0 and 1.

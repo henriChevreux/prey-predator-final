@@ -37,11 +37,11 @@ public  abstract class Predator extends Animal
      */
     public Predator (boolean randomAge, Field field, Location location){
         super(field, location);
+        
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(MAX_FOOD_VALUE);
-        }
-        else {
+        } else {
             age = 0;
             foodLevel = MAX_FOOD_VALUE;
         }
@@ -90,6 +90,7 @@ public  abstract class Predator extends Animal
         }
         return null;   
     }
+    
     /**
      * Gets the food value that a predator receives
      * when eating a prey. Increments the food level
@@ -106,7 +107,7 @@ public  abstract class Predator extends Animal
     }
 
     /**
-     * A predatpr can breed if it has reached the breeding age.
+     * A predator can breed if it has reached the breeding age.
      */
     protected boolean canBreed()
     {

@@ -83,6 +83,7 @@ public class SimulatorView extends JFrame
 
     /**
      * Display a short information label at the top of the window.
+     * @param text The String text to be displayed in the label.
      */
     public void setInfoText(String text)
     {
@@ -98,8 +99,7 @@ public class SimulatorView extends JFrame
         if(col == null) {
             // no color defined for this class
             return UNKNOWN_COLOR;
-        }
-        else {
+        } else {
             return col;
         }
     }
@@ -135,8 +135,7 @@ public class SimulatorView extends JFrame
                     }
                     stats.incrementCount(entity.getClass());
                     fieldView.drawMark(col, row, getColor(entity.getClass()));
-                }
-                else {
+                } else {
                     fieldView.drawMark(col, row, EMPTY_COLOR);
                 }
             }
@@ -155,6 +154,14 @@ public class SimulatorView extends JFrame
     public boolean isViable(Field field)
     {
         return stats.isViable(field);
+    }
+    
+    /**
+     * Returns the stats object of SimulatorView.
+     * @return stats the FieldStats object.
+     */
+    public FieldStats getStats() {
+        return stats;
     }
 
     /**
@@ -235,14 +242,11 @@ public class SimulatorView extends JFrame
                 Dimension currentSize = getSize();
                 if(size.equals(currentSize)) {
                     g.drawImage(fieldImage, 0, 0, null);
-                }
-                else {
+                } else {
                     // Rescale the previous image.
                     g.drawImage(fieldImage, 0, 0, currentSize.width, currentSize.height, null);
                 }
             }
         }
     }
-    public FieldStats getStats() {return stats;}
-    
 }

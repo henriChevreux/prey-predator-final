@@ -48,8 +48,7 @@ public abstract class Prey extends Animal
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(MAX_FOOD_VALUE);
 
-        }
-        else {
+        } else {
             age = 0;
             foodLevel = MAX_FOOD_VALUE;
         }
@@ -97,8 +96,9 @@ public abstract class Prey extends Animal
     {
         if (plant.getSize()+foodLevel<=MAX_FOOD_VALUE){
             foodLevel+=plant.getSize();
+        } else {
+            foodLevel = MAX_FOOD_VALUE;
         }
-        else {foodLevel = MAX_FOOD_VALUE;}
     }
 
     /**

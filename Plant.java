@@ -46,7 +46,7 @@ public class Plant
         alive = true;
         if(randomSize){
             size = rand.nextInt(MAX_SIZE);
-        } else{
+        } else {
             size = 0;
         }
         plantGrowthRate = DEFAULT_GROWTH_RATE;
@@ -76,6 +76,7 @@ public class Plant
         {
             size++;
         }  
+        
         if (size > MAX_SIZE){
             size = 0;
             setDead();
@@ -123,6 +124,7 @@ public class Plant
     protected int getSize(){
         return size;
     }
+    
     /**
      * Gets the growth rate of the plant.
      * @return plantGrowthRate the double growth rate of all plants between 0 and 1.
@@ -130,6 +132,7 @@ public class Plant
     protected double getPlantGrowthRate(){
         return plantGrowthRate;
     }
+    
     /**
      * Divides by two the growth rate of plants.
      * This is triggered when it is raining.
@@ -137,10 +140,12 @@ public class Plant
     public static void divideGrowthRate(){
         plantGrowthRate = plantGrowthRate/2;
     }
+    
     /**
      * Resets the growth rate of plants.
      */
     public static void resetGrowthRate(){
         plantGrowthRate = DEFAULT_GROWTH_RATE;
     }
+    
 }

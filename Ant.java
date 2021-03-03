@@ -44,20 +44,19 @@ public class Ant extends Prey
         incrementAge();
         incrementHunger();
         if(isAlive()) {
-            giveBirth(newAnts);            
+            giveBirth(newAnts);  
+            
             // Try to move into a free location.
             Location newLocation = findPlant();
             if (newLocation == null) {
                 newLocation = getField().freeAdjacentLocation(getLocation());
                 if (newLocation != null) {
                     setLocation(newLocation);
-                }
-                else {
+                } else {
                     // Overcrowding.
                     setDead();
                 }
-            }
-            else {
+            } else {
                 setLocation(newLocation);
             }
         }
@@ -96,6 +95,7 @@ public class Ant extends Prey
         }
         return births;
     }
+    
     /**
      * Gets the associated field of the simulator.
      * @param newBreedingProba The new double probability between 0 and 1.

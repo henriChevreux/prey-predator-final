@@ -51,14 +51,11 @@ public class Monkey extends Prey
                 newLocation = getField().freeAdjacentLocation(getLocation());
                 if (newLocation != null) {
                     setLocation(newLocation);
-                }
-                else {
+                } else {
                     // Overcrowding.
                     setDead();
                 }
-            }
-
-            else {
+            } else {
                 setLocation(newLocation);
             }
         }
@@ -87,6 +84,7 @@ public class Monkey extends Prey
             }
         }
     }
+    
     /**
      * Generate a number representing the number of births,
      * if a pangolin can breed.
@@ -102,6 +100,7 @@ public class Monkey extends Prey
         }
         return births;
     }
+    
     /**
      * Gets the associated field of the simulator.
      * @param newBreedingProba The new double probability between 0 and 1.

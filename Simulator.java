@@ -21,14 +21,19 @@ public class Simulator
     private static final int DEFAULT_WIDTH = 180;
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 120;
+    
     // The probability that a Lion will be created in any given grid position.
     private static double LION_CREATION_PROBABILITY = 0.04;
+    
     // The probability that a Pangolin will be created in any given grid position.
     private static double PANGOLIN_CREATION_PROBABILITY = 0.07;  
+    
     // The probability that a Jaguar will be created in any given grid position.
     private static double JAGUAR_CREATION_PROBABILITY = 0.03;
+    
     // The probability that an Ant will be created in any given grid position.
     private static double ANT_CREATION_PROBABILITY = 0.08;
+    
     // The probability that a Monkey will be created in any given grid position.
     private static double MONKEY_CREATION_PROBABILITY = 0.09;
     
@@ -70,9 +75,12 @@ public class Simulator
             depth = DEFAULT_DEPTH;
             width = DEFAULT_WIDTH;
         }
-
+        
+        //Instantiate the lists of animals and plants
         animals = new ArrayList<>();
         plants = new ArrayList<>();
+        
+        //create the field object
         field = new Field(depth, width);
         
 
@@ -88,9 +96,10 @@ public class Simulator
         //Create a timebox object
         timebox = new Timebox();
         
-        //Create a weatherbox object and
-        //sets the current weather to "sun".
+        //Create a weatherbox object
         weatherbox = new Weatherbox();
+        
+        //sets the current weather to "sun".
         weatherbox.setWeather("sun");
 
         // Setup a valid starting point.
@@ -135,6 +144,8 @@ public class Simulator
     {
         step++;
         weatherbox.generateWeather();
+        Random rand = Randomizer.getRandom();
+        
         // Provide space for newborn animals.
         List<Animal> newAnimals = new ArrayList<>();        
         // Let all anoimals act.
@@ -149,7 +160,6 @@ public class Simulator
             }
         }
         
-        Random rand = Randomizer.getRandom();
         //let all plants act.
         if (timebox.isDay()){
             for(int row = 0; row < field.getDepth(); row++) {
@@ -163,11 +173,9 @@ public class Simulator
             }
         }
         
-        
-        // Add the newly born foxes and rabbits to the main lists.
+        // Add the newly born animals to the main lists.
         animals.addAll(newAnimals);
         
-
         view.showStatus(timebox.getDay(), timebox.getHourOfDay(), 
             timebox.getDayNightString(),timebox.getAMAndPMString(),weatherbox.getWeather(), field);
     }
@@ -193,33 +201,27 @@ public class Simulator
     {
         Random rand = Randomizer.getRandom();
         field.clear();
+        
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 Location location = new Location(row, col);
                 if(rand.nextDouble() <= LION_CREATION_PROBABILITY) {
-                    
                     Lion lion = new Lion(true, field, location);
                     animals.add(lion);
                 }
                 else if(rand.nextDouble() <= PANGOLIN_CREATION_PROBABILITY) {
-                    
                     Pangolin pangolin = new Pangolin(true, field, location);
                     animals.add(pangolin);
                 } else if (rand.nextDouble() <= MONKEY_CREATION_PROBABILITY) {
-                    
                     Monkey monkey = new Monkey(true, field, location);
                     animals.add(monkey);
-                    // else leave the location empty.
                 }else if(rand.nextDouble() <= ANT_CREATION_PROBABILITY) {
-                    
                     Ant ant = new Ant(true, field, location);
                     animals.add(ant);  
                 } else if (rand.nextDouble() <= JAGUAR_CREATION_PROBABILITY) {
-                    
                     Jaguar jaguar = new Jaguar(true, field, location);
                     animals.add(jaguar);
                 } else if (rand.nextDouble() <= PLANT_CREATION_PROBABILITY){
-                    
                     Plant plant = new Plant (true, field, location);
                     plants.add(plant);
                 }
@@ -240,6 +242,7 @@ public class Simulator
             // wake up
         }
     }
+    
     /**
      * Gets the current number of steps since start of simulation
      * @return total number of steps as integer.
@@ -262,6 +265,7 @@ public class Simulator
         Monkey.setBreedingProbability(monkeyProb);
         PLANT_CREATION_PROBABILITY=plant;   
     }
+    
     //getters used for the SimulatorStabiliser 
     /**
      * Gets the associated field of the simulator.
@@ -270,6 +274,7 @@ public class Simulator
     public Field getField(){
         return field;
     }
+    
     /**
      * Gets the associated simulator view of the simulator.
      * @return SimulatorView object of the simulator.

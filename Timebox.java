@@ -16,12 +16,13 @@ public class Timebox
     private static final String PM_DISPLAY_VALUE ="PM";
     
     /**
-     * Constructor for objects of class Timebox
+     * Constructor for objects of class Timebox.
      */
     public Timebox()
     {
         
     }
+    
     /**
      * Convert steps into days and returns 
      * the number of days.
@@ -30,6 +31,7 @@ public class Timebox
         int step = Simulator.getStep();
         return step/24;
     }
+    
     /**
      * Convert steps into hours of a day
      * by using a 12-hour clock logic
@@ -39,6 +41,7 @@ public class Timebox
         int step = Simulator.getStep();
         return (step+11)%12+1;
     }
+    
     /**
      * Checks if it is daytime or nightime.
      * @return true if the hours are between
@@ -49,6 +52,7 @@ public class Timebox
         if (step%24>=6 && step%24<=18) return true;
         else return false;
     }
+    
     /**
      * Checks if the current hour should be 
      * displayed as "AM" OR "PM" in the 
@@ -61,6 +65,7 @@ public class Timebox
         return true;
         else return false;      
     }
+    
     /**
      * Returns two different string that will be
      * diplayed on the GUI depending on whether
@@ -72,6 +77,7 @@ public class Timebox
         if (isDay()) return DAY_DISPLAY_VALUE;
         else return NIGHT_DISPLAY_VALUE;
     }
+    
     /**
      * Returns two different string that will be
      * diplayed on the GUI depending on whether
@@ -83,6 +89,7 @@ public class Timebox
         if (isAM(step))return AM_DISPLAY_VALUE;
         else return PM_DISPLAY_VALUE;
     }
+    
     /**
      * Convert days and hours into steps 
      * @return the number of steps corresponding
